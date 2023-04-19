@@ -4,9 +4,14 @@ from test_framework import generic_test
 
 
 def apply_permutation(perm: List[int], A: List[int]) -> None:
-    # TODO - you fill in here.
-    return
+    print(A)
+    for i in range(len(perm)):
+        next = i
+        while perm[next] >= 0:
+            
+            
 
+    return
 
 def apply_permutation_wrapper(perm, A):
     apply_permutation(perm, A)

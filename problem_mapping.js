@@ -65,7 +65,7 @@ problem_mapping = {
                 "passed": 0,
                 "total": 10000
             },
-            "Python: closest_int_same_weight.py": { 
+            "Python: closest_int_same_weight.py": {
                 "passed": 0,
                 "total": 10000
             }
@@ -236,7 +236,7 @@ problem_mapping = {
                 "total": 2004
             },
             "Python: advance_by_offsets.py": {
-                "passed": 0,
+                "passed": 2004,
                 "total": 2004
             }
         },
@@ -250,7 +250,7 @@ problem_mapping = {
                 "total": 2003
             },
             "Python: sorted_array_remove_dups.py": {
-                "passed": 0,
+                "passed": 2003,
                 "total": 2003
             }
         },
@@ -264,7 +264,7 @@ problem_mapping = {
                 "total": 402
             },
             "Python: buy_and_sell_stock.py": {
-                "passed": 0,
+                "passed": 402,
                 "total": 402
             }
         },
@@ -278,7 +278,7 @@ problem_mapping = {
                 "total": 402
             },
             "Python: buy_and_sell_stock_twice.py": {
-                "passed": 0,
+                "passed": 402,
                 "total": 402
             }
         },
@@ -306,7 +306,7 @@ problem_mapping = {
                 "total": 24
             },
             "Python: prime_sieve.py": {
-                "passed": 0,
+                "passed": 24,
                 "total": 24
             }
         },
@@ -334,7 +334,7 @@ problem_mapping = {
                 "total": 2001
             },
             "Python: next_permutation.py": {
-                "passed": 0,
+                "passed": 2001,
                 "total": 2001
             }
         },
@@ -490,7 +490,7 @@ problem_mapping = {
                 "total": 15002
             },
             "Python: string_integer_interconversion.py": {
-                "passed": 0,
+                "passed": 15002,
                 "total": 15002
             }
         },
@@ -504,7 +504,7 @@ problem_mapping = {
                 "total": 20001
             },
             "Python: convert_base.py": {
-                "passed": 0,
+                "passed": 20001,
                 "total": 20001
             }
         },
@@ -676,15 +676,15 @@ problem_mapping = {
                 "total": 505
             },
             "Python: delete_from_list.py": {
-                "passed": 0,
+                "passed": 457,
                 "total": 457
             },
             "Python: insert_in_list.py": {
-                "passed": 0,
+                "passed": 504,
                 "total": 504
             },
             "Python: search_in_list.py": {
-                "passed": 0,
+                "passed": 505,
                 "total": 505
             }
         },
@@ -712,7 +712,7 @@ problem_mapping = {
                 "total": 210
             },
             "Python: reverse_sublist.py": {
-                "passed": 0,
+                "passed": 210,
                 "total": 210
             }
         },

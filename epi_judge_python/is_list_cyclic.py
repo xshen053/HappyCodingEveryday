@@ -6,9 +6,41 @@ from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
+# Method one, from [C++ Book]
+# def has_cycle(head: ListNode) -> Optional[ListNode]:
+#     fast = slow = head
+#     # handle special case
+#     if not fast or not fast.next:
+#         return None
+    
+#     # do
+#     fast = fast.next.next
+#     slow = slow.next
 
+#     # while
+#     while fast is not slow:
+#         if not fast or not fast.next:
+#             return None
+#         fast = fast.next.next
+#         slow = slow.next
+#     # already found cycle
+    
+#     fast = head
+#     while fast is not slow:
+#         slow = slow.next
+#         fast = fast.next
+#     return fast
+
+# Method 2, adapted from EPI program
 def has_cycle(head: ListNode) -> Optional[ListNode]:
-    # TODO - you fill in here.
+    fast = slow = head
+    while fast and fast.next and fast.next.next:
+        slow, fast = slow.next, fast.next.next
+        if slow is fast:
+            slow = head
+            while slow is not fast:
+                slow, fast = slow.next, fast.next
+            return slow
     return None
 
 

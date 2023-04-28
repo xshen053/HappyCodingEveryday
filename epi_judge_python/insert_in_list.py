@@ -7,9 +7,11 @@ from test_framework.test_utils import enable_executor_hook
 
 # Insert new_node after node.
 def insert_after(node: ListNode, new_node: ListNode) -> None:
+    # {node-A}
     new_node.next = node.next
+    # {new_node-A && node-A}
     node.next = new_node
-
+    # {node-new_node-A}
 
 @enable_executor_hook
 def insert_list_wrapper(executor, l, node_idx, new_node_data):

@@ -7,8 +7,14 @@ from test_framework.test_utils import enable_executor_hook
 
 # Assumes node_to_delete is not tail.
 def deletion_from_list(node_to_delete: ListNode) -> None:
-    # TODO - you fill in here.
-    return
+    # {a->node->b->c}
+    data = node_to_delete.next.data
+    node_to_delete.next = node_to_delete.next.next
+    # {a->node->c && data = b.data}
+    node_to_delete.data = data
+    # {a->b->c}
+
+
 
 
 @enable_executor_hook

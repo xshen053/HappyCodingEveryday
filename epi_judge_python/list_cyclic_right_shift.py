@@ -3,9 +3,17 @@ from typing import Optional
 from list_node import ListNode
 from test_framework import generic_test
 
-
 def cyclically_right_shift_list(L: ListNode, k: int) -> Optional[ListNode]:
     def length(L):
+        """
+        Returns the length of a linked list.
+
+        Args:
+        - L: Head node of a linked list
+
+        Returns:
+        - The length of the linked list
+        """
         length = 0
         while L:
             length += 1
@@ -42,7 +50,6 @@ def cyclically_right_shift_list(L: ListNode, k: int) -> Optional[ListNode]:
     
     return dummy_node.next
     
-
 
 
 if __name__ == '__main__':

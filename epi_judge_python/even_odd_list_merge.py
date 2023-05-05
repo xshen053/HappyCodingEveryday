@@ -32,7 +32,8 @@ def even_odd_merge(L: ListNode) -> Optional[ListNode]:
     # {odd and even are okay}
     odd.next = head_even
     # {odd->even}
-
+    
+    
     return L
 
 if __name__ == '__main__':

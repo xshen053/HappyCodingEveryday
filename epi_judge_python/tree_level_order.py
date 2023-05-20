@@ -21,7 +21,7 @@ def binary_tree_depth_order(tree: BinaryTreeNode) -> List[List[int]]:
         ]
     # {inv && cur_depth_nodes is empty ==> result has all nodes}
     return result
-
+    
 
 if __name__ == '__main__':
     exit(

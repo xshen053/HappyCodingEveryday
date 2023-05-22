@@ -26,9 +26,6 @@ def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
 
     return check_balanced(tree).balanced
 
-
-
-
 if __name__ == '__main__':
     exit(
         generic_test.generic_test_main('is_tree_balanced.py',

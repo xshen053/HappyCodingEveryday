@@ -6,12 +6,38 @@ from test_framework import generic_test
 from test_framework.binary_tree_utils import must_find_node, strip_parent_link
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
-
+import collections
 
 def lca(tree: BinaryTreeNode, node0: BinaryTreeNode,
         node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
-    # TODO - you fill in here.
-    return None
+    
+    root = None
+
+    def dfs(tree, node0, node1):
+        nonlocal root
+        if not tree:
+            return False
+
+        left = dfs(tree.left, node0, node1)
+        right = dfs(tree.right, node0, node1)
+        # this if statement includes 3 cases
+        # 1. two nodes are in two subtrees
+        # 2. one node is tree node, the other in one of subtree
+        # 3. two nodes are both tree node, (1, 1, 1)
+
+        if ((left and right) 
+            or ((tree.data == node0.data 
+                 or tree.data == node1.data) 
+                 and (left or right)) 
+                 or (tree.data == node0.data 
+                     and node0.data == node1.data)):
+            root = tree
+        return left or right or tree.data == node0.data or tree.data == node1.data
+
+    dfs(tree, node0, node1)
+    return root
+
+    
 
 
 @enable_executor_hook

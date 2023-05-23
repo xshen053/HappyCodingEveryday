@@ -10,7 +10,9 @@ def is_symmetric(tree: BinaryTreeNode) -> bool:
         elif not p or not q:
             return False
         else:
-            return p.data == q.data and helper(p.left, q.right) and helper(p.right, q.left)
+            return (p.data == q.data 
+                    and helper(p.left, q.right) 
+                    and helper(p.right, q.left))
 
     return not tree or helper(tree.left, tree.right)
 

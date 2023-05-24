@@ -1707,6 +1707,12 @@ tree_level_order: tree_level_order.py
 
 .PHONY: tree_level_order
 
+# tree_level_order_23.py
+
+tree_level_order_5_23: tree_level_order_5_23.py
+	$(PYTHON_COMPILER) $< $(PROGRAM_ARGS)
+
+.PHONY: tree_level_order_5_23
 
 # tree_postorder.py
 

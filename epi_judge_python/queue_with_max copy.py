@@ -4,48 +4,32 @@ import collections
 
 class QueueWithMax:
     def __init__(self) -> None:
-        self.queue = collections.deque()
-        self.max_queue = collections.deque()
+        self._entries = collections.deque()
+        self._candidates_for_max = collections.deque()
 
     def enqueue(self, x: int) -> None:
-
-        # {queue}
-        # {max_queue[0] max num in queue}
-        self.queue.append(x)
-        # {queue = queue + x}
-
-
-        # {i: number of pop times }
-        # {max_queue[0, orginal_size - i) are all larger than x}
-        while self.max_queue and self.max_queue[-1] < x:
-
-            self.max_queue.pop()
-
-        # {max_queue decreasing and all >= x}
-
-        self.max_queue.append(x)
-        # {max_queue[0] max num in queue}
+        self._entries.append(x)
+        # Eliminate dominated elements in _candidates_for_max.
+        while self._candidates_for_max and self._candidates_for_max[-1] < x:
+            self._candidates_for_max.pop()
+        self._candidates_for_max.append(x)
 
     def dequeue(self) -> int:
-        # {}
-        if self.queue:
-            # {queue is not empty}
-            num = self.queue.popleft()
-            # {queue = queue[1:] && num = queue[0]}
-            if num == self.max_queue[0]:
-                # {num == max_queue[0]}
-                self.max_queue.popleft()
-                # {max_queue = max_queue[1:]}
-
-            return num
+        # None case
+        if not self._entries:
+            raise IndexError('empty queue')
         
-        raise IndexError('Emtpy queue')
+        # Normal case
+        num = self._entries.popleft()
+        if num == self._candidates_for_max[0]:
+            self._candidates_for_max.popleft()
+        return num
 
     def max(self) -> int:
-        if self.queue:
-            return self.max_queue[0]
+        if not self._candidates_for_max:
+            raise IndexError('empty queue')
         
-        raise IndexError('Emtpy queue')
+        return self._candidates_for_max[0]
 
 
 def queue_tester(ops):

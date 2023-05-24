@@ -11,6 +11,8 @@ def binary_tree_depth_order(tree: BinaryTreeNode) -> List[List[int]]:
         return result
 
     curr_depth_nodes = [tree]
+    
+    # {curr_depth_nodes tree + result = whole tree}
     while curr_depth_nodes:
         result.append([curr.data for curr in curr_depth_nodes])
         curr_depth_nodes = [

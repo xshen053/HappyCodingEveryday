@@ -22,7 +22,7 @@ def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
         is_balanced = abs(left_result.height - right_result.height) <= 1
         height = max(left_result.height, right_result.height) + 1
 
-        return BalancedStatusWithHeight(is_balanced, height)
+        return check_balanced(tree)
 
     return check_balanced(tree).balanced
 

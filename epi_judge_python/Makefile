@@ -1783,3 +1783,10 @@ clean:
 	rm -r $(BUILD_DIR)
 
 .PHONY: all clean
+
+# review
+
+is_valid_parenthesization_5_23: is_valid_parenthesization_5_23.py
+	$(PYTHON_COMPILER) $< $(PROGRAM_ARGS)
+
+.PHONY: is_valid_parenthesization_5_23

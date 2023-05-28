@@ -10,33 +10,35 @@ import collections
 
 def lca(tree: BinaryTreeNode, node0: BinaryTreeNode,
         node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
+    
     root = None
 
     def dfs(tree, node0, node1):
+        nonlocal root
         if not tree:
             return False
-        nonlocal root
 
         left = dfs(tree.left, node0, node1)
         right = dfs(tree.right, node0, node1)
-                
-        if (left and right) or ((left or right) 
-                                and (tree.data == node0.data or tree.data == node1.data)) or (tree.data == node0.data and tree.data == node1.data):
-            root = tree
-            return True
-        
-        # Bug1
-        # Code: return left or right 
-        #
-        # - forgot to check current node value, we are using postorder traversal
-        # - if node.data = tree.data, also we return True
-        # - After we return (pop), we can't visit this node again in the future
+        # this if statement includes 3 cases
+        # 1. two nodes are in two subtrees
+        # 2. one node is tree node, the other in one of subtree
+        # 3. two nodes are both tree node, (1, 1, 1)
 
-        # Fix bug1
+        if ((left and right) 
+            or ((tree.data == node0.data 
+                 or tree.data == node1.data) 
+                 and (left or right)) 
+                 or (tree.data == node0.data 
+                     and node0.data == node1.data)):
+            root = tree
         return left or right or tree.data == node0.data or tree.data == node1.data
 
     dfs(tree, node0, node1)
     return root
+
+    
+
 
 @enable_executor_hook
 def lca_wrapper(executor, tree, key1, key2):

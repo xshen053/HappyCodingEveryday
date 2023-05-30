@@ -14,19 +14,32 @@ class BinaryTreeNode:
         self.size = size
 
 
-def find_kth_node_binary_tree(tree: BinaryTreeNode,
-                              k: int) -> Optional[BinaryTreeNode]:
-    while tree:
-        left_size = tree.left.size if tree.left else 0
-        if k < left_size + 1:
-            tree = tree.left
-        elif k > left_size + 1:
-            k -= left_size + 1
-            tree = tree.right
-        else:
-            return tree
+# def find_kth_node_binary_tree(tree: BinaryTreeNode,
+#                               k: int) -> Optional[BinaryTreeNode]:
+#     while tree:
+#         left_size = tree.left.size if tree.left else 0
+#         if k < left_size + 1:
+#             tree = tree.left
+#         elif k > left_size + 1:
+#             k -= left_size + 1
+#             tree = tree.right
+#         else:
+#             return tree
 
-    return None
+#     return None
+
+def find_kth_node_binary_tree_recursion(tree: BinaryTreeNode,
+                              k: int) -> Optional[BinaryTreeNode]:
+    if not tree:
+        return None
+    left_size = tree.left.size if tree.left else 0
+
+    if k == left_size + 1:
+        return tree
+    if k < left_size + 1:
+        return find_kth_node_binary_tree_recursion(tree.left, k)
+    if k > left_size + 1:
+        return find_kth_node_binary_tree_recursion(tree.right, k - left_size - 1)
 
 
 @enable_executor_hook
@@ -39,7 +52,7 @@ def find_kth_node_binary_tree_wrapper(executor, tree, k):
 
     init_size(tree)
 
-    result = executor.run(functools.partial(find_kth_node_binary_tree, tree,
+    result = executor.run(functools.partial(find_kth_node_binary_tree_recursion, tree,
                                             k))
 
     if not result:

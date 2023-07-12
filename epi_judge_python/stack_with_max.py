@@ -1,36 +1,37 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
-
+import collections
+from collections import namedtuple
+from typing import List
 
 class Stack:
+    ElementWithCachedMax = collections.namedtuple('ElementWithCachedMax', ['element', 'max_value'])
     def __init__(self):
-        self.stack = []  # Initialize an empty list
-        self.max_value = float('-inf')
+        # More readable
+        self._element_with_cached_max_: List[Stack.ElementWithCachedMax] = []
 
     def empty(self) -> bool:
-        return len(self.stack) == 0
+        return len(self._element_with_cached_max_) == 0
 
     def max(self) -> int:
         if self.empty():
             raise IndexError("Stack is empty")
-        return self.max_value
+        return self._element_with_cached_max_[-1].max_value
 
     def pop(self) -> int:
         if self.empty():
             raise IndexError("Stack is empty")
-        ret = self.stack.pop()
-        value = float('-inf')
-        for val in self.stack:
-            if val > value:
-                value = val
-        self.max_value = value
-        return ret
+        return self._element_with_cached_max_.pop().element
     
     def push(self, x: int) -> None:
-        self.stack.append(x)
-        if x > self.max_value:
-            self.max_value = x
-            
+        # Case1 if empty: push
+        if self.empty():
+            self._element_with_cached_max_.append(self.ElementWithCachedMax(x, x))
+        # Case2 compare max and push
+        else:
+            self._element_with_cached_max_.append(self.ElementWithCachedMax(x, max(x, self.max())))
+ 
+
 def stack_tester(ops):
     try:
         s = Stack()

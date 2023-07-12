@@ -1,32 +1,31 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
-import collections
-from typing import List
 
-# haven't optimized
+
 class Stack:
-    ElementWithCachedMax = collections.namedtuple('ElementWithCachedMax',
-                                                  ('element', 'max'))
+    def __init__(self):
+        self.stack = []  # Initialize an empty list
     
-    def __init__(self) -> None:
-        self._element_with_cached_max: List[Stack.ElementWithCachedMax] = []
-
     def empty(self) -> bool:
-        return len(self._element_with_cached_max) == 0
+        return len(self.stack) == 0
 
     def max(self) -> int:
-        return self._element_with_cached_max[-1].max
+        if (self.empty()):
+            raise IndexError("Stack is empty")
+        max_value = self.stack[0]
+        for val in self.stack:
+            if val > max_value:
+                max_value = val
+        return max_value        
 
     def pop(self) -> int:
-        return self._element_with_cached_max.pop().element
+        if (self.empty()):
+            raise IndexError("Stack is empty")
+        return self.stack.pop()
 
     def push(self, x: int) -> None:
-        # didn't consider empty case...
-        # x larger -> [x, x]
-        # x smaller -> [x, max]
-        self._element_with_cached_max.append(self.ElementWithCachedMax(x, x if self.empty() else max(x, self.max())))
+        self.stack.append(x)
 
-           
 
 def stack_tester(ops):
     try:

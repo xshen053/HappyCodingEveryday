@@ -5,28 +5,32 @@ from test_framework.test_failure import TestFailure
 class Stack:
     def __init__(self):
         self.stack = []  # Initialize an empty list
-    
+        self.max_value = float('-inf')
+
     def empty(self) -> bool:
         return len(self.stack) == 0
 
     def max(self) -> int:
-        if (self.empty()):
+        if self.empty():
             raise IndexError("Stack is empty")
-        max_value = self.stack[0]
-        for val in self.stack:
-            if val > max_value:
-                max_value = val
-        return max_value        
+        return self.max_value
 
     def pop(self) -> int:
-        if (self.empty()):
+        if self.empty():
             raise IndexError("Stack is empty")
-        return self.stack.pop()
-
+        ret = self.stack.pop()
+        value = float('-inf')
+        for val in self.stack:
+            if val > value:
+                value = val
+        self.max_value = value
+        return ret
+    
     def push(self, x: int) -> None:
         self.stack.append(x)
-
-
+        if x > self.max_value:
+            self.max_value = x
+            
 def stack_tester(ops):
     try:
         s = Stack()
